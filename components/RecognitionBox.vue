@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps({
-  date: {
-    type: String,
+  isLoading: {
+    type: Boolean,
     required: true,
   },
   instruction: {
@@ -43,7 +43,7 @@ async function handleTTS(item: string) {
 <template>
   <div class="recognition-box">
     <div class="flex items-center justify-center space-x-2 mb-4">
-      <div class="flex flex-row items-center space-x-2">
+      <div v-if="instruction" class="flex flex-row items-center space-x-2">
         <div v-for="(item, index) in instruction.split(', ')" :key="index">
           <div class="text-sm text-gray-500">
             {{ item }}
@@ -56,6 +56,28 @@ async function handleTTS(item: string) {
             🔊
           </button>
         </div>
+      </div>
+      <div v-if="isLoading" class="flex items-center">
+        <svg
+          class="animate-spin h-5 w-5 text-gray-500"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"
+          />
+          <path
+            class="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 1 1 16 0A8 8 0 0 1 4 12zm2.5-1h9a2.5 2.5 0 1 1-5 0h-4a2.5 2.5 0 0 1-4.5-1z"
+          />
+        </svg>
       </div>
       <CameraButton @take-photo="onTakePhoto" />
     </div>

@@ -44,7 +44,7 @@ function handleTakePhoto() {
       </div>
     </div>
     <RecognitionBox
-      :date="date"
+      :is-loading="false"
       :instruction="word?.word || ''"
       :on-take-photo="handleTakePhoto"
     />

@@ -8,6 +8,7 @@ const previewImage = ref('')
 const resultImage = ref('')
 const router = useRouter()
 const store = useVocabularyStore()
+const isLoading = ref(false)
 
 // Initialize camera on mount
 onMounted(async () => {
@@ -72,6 +73,7 @@ async function takePhoto() {
     // Set preview image and stop camera
     previewImage.value = URL.createObjectURL(blob as Blob)
     stopCamera()
+    isLoading.value = true
 
     const imgUrl = await blobToBase64(blob as Blob)
     // Send to backend
@@ -149,6 +151,7 @@ async function takePhoto() {
       word: recognition || 'New Item',
       imageUrl: resultImage.value,
     })
+    isLoading.value = false
 
     // Navigate to detail page after a short delay to allow the image to be displayed
     setTimeout(() => {
@@ -192,8 +195,8 @@ async function takePhoto() {
     </div>
 
     <RecognitionBox
-      date="4月 08"
-      instruction="把需要识别的物体放在屏幕中间位置"
+      :is-loading="isLoading"
+      instruction=""
       :on-take-photo="takePhoto"
     />
   </div>
