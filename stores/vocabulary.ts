@@ -13,7 +13,6 @@ export const useVocabularyStore = defineStore('vocabulary', {
       {
         date: '4月 07',
         words: [
-          { id: '3', word: 'Elevator button panel', imageUrl: 'https://images.pexels.com/photos/6794102/pexels-photo-6794102.jpeg' },
           { id: '4', word: 'Brush', imageUrl: 'https://images.pexels.com/photos/6621472/pexels-photo-6621472.jpeg' },
         ],
       },

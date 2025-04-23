@@ -6,7 +6,6 @@ const vocabulary = useVocabularyStore()
 
 <template>
   <div class="min-h-screen bg-gray-50">
-    <StatusBar />
     <div class="p-4">
       <DateGroup v-for="group in vocabulary.items" :key="group.date" :date="group.date">
         <VocabularyItem

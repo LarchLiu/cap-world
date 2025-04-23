@@ -166,7 +166,6 @@ async function takePhoto() {
 
 <template>
   <div class="min-h-screen bg-gray-50">
-    <StatusBar />
     <div class="p-4">
       <BackButton />
       <h1 class="text-xl mb-4">
