@@ -21,8 +21,34 @@ const word = computed(() => {
   return null
 })
 
-function handleTakePhoto() {
-  router.push('/camera')
+watch(word, (newWord) => {
+  if (!newWord)
+    return router.push('/')
+})
+
+async function handleTTS(item: string) {
+  try {
+    const response = await fetch('/api/tts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ words: item }),
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to get speech')
+    }
+
+    // Handle audio response
+    const audioBlob = await response.blob()
+    const audioUrl = URL.createObjectURL(audioBlob)
+    const audio = new Audio(audioUrl)
+    await audio.play()
+  }
+  catch (error) {
+    console.error('Error playing TTS:', error)
+  }
 }
 </script>
 
@@ -38,14 +64,28 @@ function handleTakePhoto() {
           :src="word?.imageUrl"
           :alt="word?.word"
           class="w-full object-contain rounded-lg"
-          style="max-height: calc(100vh - 300px);"
+          style="max-height: calc(50vh);"
         >
       </div>
+      <div v-if="word?.word" class="flex flex-row items-center justify-center mt-2">
+        <div v-for="(item, index) in word.word.split(', ')" :key="index" class="flex flex-row justify-center items-center space-x-2">
+          <div class="text-sm text-gray-500 text-xl">
+            {{ item }}
+          </div>
+          <button
+            v-if="item"
+            class="p-2 text-gray-500 hover:text-gray-700"
+            @click="handleTTS(item)"
+          >
+            🔊
+          </button>
+        </div>
+      </div>
     </div>
-    <RecognitionBox
-      :is-loading="false"
-      :instruction="word?.word || ''"
-      :on-take-photo="handleTakePhoto"
-    />
+    <div class="fixed bottom-4 left-1/2 -translate-x-1/2">
+      <NuxtLink to="/camera" class="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center">
+        <div class="w-12 h-12 rounded-full border-4 border-gray-400" />
+      </NuxtLink>
+    </div>
   </div>
 </template>

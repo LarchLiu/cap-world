@@ -166,19 +166,12 @@ async function takePhoto() {
 
 <template>
   <div class="min-h-screen bg-gray-50">
-    <div class="p-4">
-      <BackButton />
-      <h1 class="text-xl mb-4">
-        4月 08
-      </h1>
-    </div>
-
     <!-- Camera Preview -->
     <div class="relative">
       <video
         v-if="!previewImage"
         ref="videoRef"
-        class="w-full h-[calc(100vh-300px)] object-cover"
+        class="w-full h-[calc(100vh)] object-cover"
         autoplay
         playsinline
       />
@@ -189,13 +182,12 @@ async function takePhoto() {
       <img
         v-if="previewImage"
         :src="previewImage"
-        class="w-full h-[calc(100vh-300px)] object-cover"
+        class="w-full h-[calc(100vh)] object-cover"
       >
     </div>
 
     <RecognitionBox
       :is-loading="isLoading"
-      instruction=""
       :on-take-photo="takePhoto"
     />
   </div>
