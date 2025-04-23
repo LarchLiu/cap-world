@@ -1,0 +1,21 @@
+node_modules
+*.log*
+.nuxt
+.nitro
+.cache
+.output
+.data
+.bolt
+
+# local files
+dist
+.idea/
+.eslintcache
+
+# misc
+.DS_Store
+*.pem
+
+# local env files
+.env
+.env.*

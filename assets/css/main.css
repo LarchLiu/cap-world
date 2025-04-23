@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.status-bar {
+  height: 44px;
+}
+
+.vocabulary-item {
+  @apply rounded-lg shadow-md p-4 bg-white;
+}
+
+.recognition-box {
+  @apply fixed bottom-24 left-0 right-0 bg-white rounded-t-3xl p-4;
+}
