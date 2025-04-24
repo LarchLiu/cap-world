@@ -12,7 +12,7 @@ const date = computed(() => {
   return group?.date || ''
 })
 
-const word = computed(() => {
+const group = computed(() => {
   for (const group of store.items) {
     const found = group.words.find(word => word.id === route.params.id)
     if (found)
@@ -21,8 +21,8 @@ const word = computed(() => {
   return null
 })
 
-watch(word, (newWord) => {
-  if (!newWord)
+watch(group, (newGroup) => {
+  if (!newGroup)
     return router.push('/')
 })
 
@@ -61,21 +61,21 @@ async function handleTTS(item: string) {
       </h1>
       <div class="space-y-4">
         <img
-          :src="word?.imageUrl"
-          :alt="word?.word"
+          :src="group?.imageUrl"
+          :alt="group?.word"
           class="w-full object-contain rounded-lg"
           style="max-height: calc(50vh);"
         >
       </div>
-      <div v-if="word?.word" class="flex flex-row items-center justify-center mt-2">
-        <div v-for="(item, index) in word.word.split(', ')" :key="index" class="flex flex-row justify-center items-center space-x-2">
+      <div v-if="group" class="flex items-center justify-center mt-2">
+        <div v-for="(item, index) in group.data" :key="index" class="flex flex-row justify-center items-center space-x-2 mt-2">
           <div class="text-sm text-gray-500 text-xl">
-            {{ item }}
+            {{ `${item.chinese_name} ${item.english_name}` }}
           </div>
           <button
             v-if="item"
             class="p-2 text-gray-500 hover:text-gray-700"
-            @click="handleTTS(item)"
+            @click="handleTTS(item.english_name)"
           >
             🔊
           </button>

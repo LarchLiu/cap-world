@@ -120,10 +120,11 @@ async function takePhoto() {
     const recognitionResult = await recognizeResponse.json()
     // console.log(recognitionResult)
     let recognition
+    let recData
     if (recognitionResult.choices) {
       const content = recognitionResult.choices[0].message.content.replace('```json', '').replace('```', '')
       if (content) {
-        const recData = JSON.parse(content)
+        recData = JSON.parse(content)
         if (recData && recData.length) {
           recognition = recData.map((item: any) => item.english_name).join(', ')
         }
@@ -150,6 +151,7 @@ async function takePhoto() {
       id: newId,
       word: recognition || 'New Item',
       imageUrl: resultImage.value,
+      data: recData || [],
     })
     isLoading.value = false
 
