@@ -134,7 +134,7 @@ async function takePhoto() {
     // Add the new word to the store
     const newId = (Date.now()).toString()
     const today = new Date()
-    const dateStr = `${today.getMonth() + 1}月 ${today.getDate().toString().padStart(2, '0')}`
+    const dateStr = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate().toString().padStart(2, '0')}`
 
     // Find or create today's group
     let todayGroup = store.items.find(group => group.date === dateStr)
