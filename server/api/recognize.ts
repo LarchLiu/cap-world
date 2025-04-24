@@ -17,6 +17,7 @@ export default defineEventHandler(async (event) => {
         body,
       ],
       stream: false,
+      temperature: 0.1,
     }
     console.time('recognize')
     const response = await fetch('https://api.siliconflow.cn/v1/chat/completions', {
