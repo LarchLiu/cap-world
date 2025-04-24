@@ -3,12 +3,12 @@ import { defineEventHandler } from 'h3'
 
 export default defineEventHandler(async (event) => {
   const runtimeConfig = useRuntimeConfig(event)
-  const apiKey = runtimeConfig.openaiApiKey
+  const apiKey = runtimeConfig.silliconApiKey
   try {
     const body = await readBody(event)
 
     const requestBody = {
-      model: 'gpt-4o-mini',
+      model: 'Pro/Qwen/Qwen2.5-VL-7B-Instruct',
       messages: [
         {
           role: 'system',
@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
       stream: false,
     }
     console.time('recognize')
-    const response = await fetch('https://burn.hair/v1/chat/completions', {
+    const response = await fetch('https://api.siliconflow.cn/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
