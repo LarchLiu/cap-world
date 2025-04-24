@@ -67,8 +67,8 @@ async function handleTTS(item: string) {
           style="max-height: calc(50vh);"
         >
       </div>
-      <div v-if="group" class="flex items-center justify-center mt-2">
-        <div v-for="(item, index) in group.data" :key="index" class="flex flex-row justify-center items-center space-x-2 mt-2">
+      <div v-if="group" class="flex flex-col items-center justify-center mt-2">
+        <div v-for="(item, index) in group.data" :key="index" class="flex justify-center items-center space-x-2 mt-2">
           <div class="text-sm text-gray-500 text-xl">
             {{ `${item.chinese_name} ${item.english_name}` }}
           </div>
