@@ -19,3 +19,4 @@ dist
 # local env files
 .env
 .env.*
+!.env.example
