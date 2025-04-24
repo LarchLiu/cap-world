@@ -5,8 +5,9 @@ import { defineEventHandler } from 'h3'
 
 export default defineEventHandler(async (event) => {
   const runtimeConfig = useRuntimeConfig(event)
-  const falModelId = runtimeConfig.falModelId
-  const outputWebp = falModelId.split(':')[1] === 'webp'
+  const falModelIdCfg = runtimeConfig.falModelId.split(':')
+  const falModelId = falModelIdCfg[0]
+  const outputWebp = falModelIdCfg[1] === 'webp'
 
   fal.config({
     credentials: runtimeConfig.falApiKey,
@@ -20,7 +21,7 @@ export default defineEventHandler(async (event) => {
       input.output_format = 'webp'
     }
     console.time('remove-bg')
-    const response = await fal.subscribe(runtimeConfig.falModelId, {
+    const response = await fal.subscribe(falModelId, {
       // input: {
       //   image_url: body.imageUrl,
       //   // output_mask: true,
