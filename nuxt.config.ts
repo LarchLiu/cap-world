@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     falApiKey: '', // used for fal.ai API
     falModelId: 'fal-ai/birefnet/v2:webp', // used for fal.ai model ID
     silliconApiKey: '', // used for silliconflow.cn
+    bailianApiKey: '', // used for aliyun bailian
   },
   compatibilityDate: '2024-04-03',
   devtools: { enabled: false },

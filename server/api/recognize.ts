@@ -3,12 +3,12 @@ import { defineEventHandler } from 'h3'
 
 export default defineEventHandler(async (event) => {
   const runtimeConfig = useRuntimeConfig(event)
-  const apiKey = runtimeConfig.silliconApiKey
+  const apiKey = runtimeConfig.bailianApiKey
   try {
     const body = await readBody(event)
 
     const requestBody = {
-      model: 'Pro/Qwen/Qwen2.5-VL-7B-Instruct',
+      model: 'qwen-vl-plus-2025-01-25',
       messages: [
         {
           role: 'system',
@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
       temperature: 0.1,
     }
     console.time('recognize')
-    const response = await fetch('https://api.siliconflow.cn/v1/chat/completions', {
+    const response = await fetch('https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
