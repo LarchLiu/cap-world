@@ -5,18 +5,28 @@ import { defineEventHandler } from 'h3'
 
 export default defineEventHandler(async (event) => {
   const runtimeConfig = useRuntimeConfig(event)
+  const falModelId = runtimeConfig.falModelId
+  const outputWebp = falModelId.split(':')[1] === 'webp'
+
   fal.config({
     credentials: runtimeConfig.falApiKey,
   })
   try {
     const body = await readBody(event)
+    const input: any = {
+      image_url: body.imageUrl,
+    }
+    if (outputWebp) {
+      input.output_format = 'webp'
+    }
     console.time('remove-bg')
-    const response = await fal.subscribe('fal-ai/birefnet/v2', {
-      input: {
-        image_url: body.imageUrl,
-        // output_mask: true,
-        output_format: 'webp',
-      },
+    const response = await fal.subscribe(runtimeConfig.falModelId, {
+      // input: {
+      //   image_url: body.imageUrl,
+      //   // output_mask: true,
+      //   output_format: 'webp',
+      // },
+      input,
       logs: true,
       onQueueUpdate: (update) => {
         if (update.status === 'IN_PROGRESS') {

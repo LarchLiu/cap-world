@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     openaiApiKey: '', // used for OpenAI API
     removeBgApiKey: '', // used for remove.bg API
     falApiKey: '', // used for fal.ai API
+    falModelId: 'fal-ai/birefnet/v2:webp', // used for fal.ai model ID
     silliconApiKey: '', // used for silliconflow.cn
   },
   compatibilityDate: '2024-04-03',
