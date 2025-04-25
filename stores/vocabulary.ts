@@ -113,7 +113,7 @@ export const useVocabularyStore = defineStore('vocabulary', {
           // 如果 IndexedDB 中没有数据，使用默认数据
           this.items = [
             {
-              date: '2025-4-8',
+              date: '2025-4-25',
               words: [
                 {
                   id: '1',
@@ -141,7 +141,7 @@ export const useVocabularyStore = defineStore('vocabulary', {
                       chinese_pinyin: 'xǐ yī ròu',
                     },
                     {
-                      chinese_name: '松香',
+                      chinese_name: '松香洗衣液',
                       english_name: 'Pine Scented Liquid Detergent',
                       english_phonetic: '/pain sɛnd tʃæd liqjwɪd di.tɜːrdʒ.ənt/',
                       chinese_pinyin: 'sōng xiāng',
