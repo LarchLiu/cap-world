@@ -50,10 +50,60 @@ async function handleTTS(item: string) {
     console.error('Error playing TTS:', error)
   }
 }
+
+// Find adjacent words for navigation
+const adjacentWords = computed(() => {
+  let prevWord: { id: string } | null = null
+  let nextWord: { id: string } | null = null
+  let foundCurrent = false
+
+  for (const group of store.items) {
+    for (let i = 0; i < group.words.length; i++) {
+      if (foundCurrent) {
+        nextWord = group.words[i]
+        break
+      }
+
+      if (group.words[i].id === route.params.id) {
+        foundCurrent = true
+        if (i > 0) {
+          prevWord = group.words[i - 1]
+        }
+        else if (store.items.indexOf(group) > 0) {
+          const prevGroup = store.items[store.items.indexOf(group) - 1]
+          prevWord = prevGroup.words[prevGroup.words.length - 1]
+        }
+      }
+      else if (!foundCurrent) {
+        prevWord = group.words[i]
+      }
+    }
+    if (foundCurrent && nextWord)
+      break
+  }
+
+  return {
+    prev: prevWord?.id,
+    next: nextWord?.id,
+  }
+})
+
+function handleSwipe(direction: string) {
+  if (direction === 'left' && adjacentWords.value.next) {
+    router.push(`/detail/${adjacentWords.value.next}`)
+  }
+  else if (direction === 'right' && adjacentWords.value.prev) {
+    router.push(`/detail/${adjacentWords.value.prev}`)
+  }
+}
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50">
+  <div
+    v-touch:swipe.left="() => handleSwipe('left')"
+    v-touch:swipe.right="() => handleSwipe('right')"
+    class="min-h-screen bg-gray-50"
+  >
     <div class="p-4">
       <BackButton />
       <h1 class="text-xl mb-4">

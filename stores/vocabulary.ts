@@ -148,6 +148,12 @@ export const useVocabularyStore = defineStore('vocabulary', {
                     },
                   ],
                 },
+
+              ],
+            },
+            {
+              date: '2025-4-24',
+              words: [
                 {
                   id: '3',
                   word: 'Mug, Spoon',
