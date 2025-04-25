@@ -1,4 +1,4 @@
-FROM node:20-slim as builder
+FROM node:20 as builder
 
 RUN npm i -g pnpm@9.15.1
 
