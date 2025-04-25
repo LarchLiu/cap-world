@@ -117,41 +117,74 @@ export const useVocabularyStore = defineStore('vocabulary', {
               words: [
                 {
                   id: '1',
-                  word: 'Youtiao',
-                  imageUrl: 'https://images.pexels.com/photos/2135/food-france-morning-breakfast.jpg',
-                  data: [{
-                    chinese_name: '油条',
-                    english_name: 'Youtiao',
-                    english_phonetic: 'ˈjʊˌtjaʊ',
-                    chinese_pinyin: 'yóu tiáo',
-                  }],
+                  word: 'Washing machine',
+                  imageUrl: 'https://v3.fal.media/files/elephant/lMGtsskaoTkGKPl3WMpEu_89dbc99024864b01a89509140fe79eac.webp',
+                  data: [
+                    {
+                      chinese_name: '洗衣机',
+                      english_name: 'Washing machine',
+                      english_phonetic: '/ˈwɒʃɪŋ məˈʃiːn/',
+                      chinese_pinyin: 'xǐ yī jī',
+                    },
+
+                  ],
                 },
                 {
                   id: '2',
-                  word: 'Soy milk',
-                  imageUrl: 'https://images.pexels.com/photos/5946974/pexels-photo-5946974.jpeg',
-                  data: [{
-                    chinese_name: '豆浆',
-                    english_name: 'Soy milk',
-                    english_phonetic: 'sɔɪ mɪlk',
-                    chinese_pinyin: 'dòu jiāng',
-                  }],
+                  word: 'Liquid Detergent, Pine Scented Liquid Detergent',
+                  imageUrl: 'https://v3.fal.media/files/lion/901J5XqXho-aHdWHWNjFA_b45ec5be0c8b42b297b70ddd1830e8a4.webp',
+                  data: [
+                    {
+                      chinese_name: '洗衣液',
+                      english_name: 'Liquid Detergent',
+                      english_phonetic: '/ˈlɪkwid dəˌtɜːr.dʒənt/',
+                      chinese_pinyin: 'xǐ yī ròu',
+                    },
+                    {
+                      chinese_name: '松香',
+                      english_name: 'Pine Scented Liquid Detergent',
+                      english_phonetic: '/pain sɛnd tʃæd liqjwɪd di.tɜːrdʒ.ənt/',
+                      chinese_pinyin: 'sōng xiāng',
+                    },
+                  ],
                 },
-              ],
-            },
-            {
-              date: '2025-4-7',
-              words: [
+                {
+                  id: '3',
+                  word: 'Mug, Spoon',
+                  imageUrl: 'https://v3.fal.media/files/kangaroo/bXoRex-ASZLXlqQuGl77Y_f2fb4ca30c6a464a8e3d29e0a3456675.webp',
+                  data: [
+                    {
+                      chinese_name: '马克杯',
+                      english_name: 'Mug',
+                      english_phonetic: '/mʌɡ/',
+                      chinese_pinyin: 'Mǎkèbēi',
+                    },
+                    {
+                      chinese_name: '勺子',
+                      english_name: 'Spoon',
+                      english_phonetic: '/spuːn/',
+                      chinese_pinyin: 'Sháozi',
+                    },
+                  ],
+                },
                 {
                   id: '4',
-                  word: 'Brush',
-                  imageUrl: 'https://images.pexels.com/photos/6621472/pexels-photo-6621472.jpeg',
-                  data: [{
-                    chinese_name: '刷子',
-                    english_name: 'Brush',
-                    english_phonetic: 'brʌʃ',
-                    chinese_pinyin: 'shuā zi',
-                  }],
+                  word: 'Mobile phone, Cigarette pack',
+                  imageUrl: 'https://v3.fal.media/files/lion/pk6xkdXvRpYimwecKBa32_ce32c1595c894901b347a5e85f268b52.webp',
+                  data: [
+                    {
+                      chinese_name: '手机',
+                      english_name: 'Mobile phone',
+                      english_phonetic: '/ˈməʊbaɪl fəʊn/',
+                      chinese_pinyin: 'shǒujī',
+                    },
+                    {
+                      chinese_name: '香烟盒',
+                      english_name: 'Cigarette pack',
+                      english_phonetic: '/ˈsɪɡərɛt pæk/',
+                      chinese_pinyin: 'xiāngyān hé',
+                    },
+                  ],
                 },
               ],
             },
