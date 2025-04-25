@@ -12,6 +12,15 @@ const isLoading = ref(false)
 
 // Initialize camera on mount
 onMounted(async () => {
+  startCamera()
+})
+
+// Clean up on unmount
+onUnmounted(() => {
+  stopCamera()
+})
+
+async function startCamera() {
   try {
     stream.value = await navigator.mediaDevices.getUserMedia({
       video: {
@@ -25,12 +34,7 @@ onMounted(async () => {
   catch (err) {
     console.error('Error accessing camera:', err)
   }
-})
-
-// Clean up on unmount
-onUnmounted(() => {
-  stopCamera()
-})
+}
 
 function stopCamera() {
   if (stream.value) {
@@ -131,34 +135,43 @@ async function takePhoto() {
       }
     }
 
+    if (recognition) {
     // Add the new word to the store
-    const newId = (Date.now()).toString()
-    const today = new Date()
-    const dateStr = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate().toString().padStart(2, '0')}`
+      const newId = (Date.now()).toString()
+      const today = new Date()
+      const dateStr = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate().toString().padStart(2, '0')}`
 
-    // Find or create today's group
-    let todayGroup = store.items.find(group => group.date === dateStr)
-    if (!todayGroup) {
-      todayGroup = {
-        date: dateStr,
-        words: [],
+      // Find or create today's group
+      let todayGroup = store.items.find(group => group.date === dateStr)
+      if (!todayGroup) {
+        todayGroup = {
+          date: dateStr,
+          words: [],
+        }
+        store.items.unshift(todayGroup)
       }
-      store.items.unshift(todayGroup)
+
+      // Add the new word
+      todayGroup.words.unshift({
+        id: newId,
+        word: recognition || 'New Item',
+        imageUrl: resultImage.value,
+        data: recData || [],
+      })
+      isLoading.value = false
+
+      // Navigate to detail page after a short delay to allow the image to be displayed
+      setTimeout(() => {
+        router.replace(`/detail/${newId}`)
+      }, 500)
     }
-
-    // Add the new word
-    todayGroup.words.unshift({
-      id: newId,
-      word: recognition || 'New Item',
-      imageUrl: resultImage.value,
-      data: recData || [],
-    })
-    isLoading.value = false
-
-    // Navigate to detail page after a short delay to allow the image to be displayed
-    setTimeout(() => {
-      router.push(`/detail/${newId}`)
-    }, 500)
+    else {
+      isLoading.value = false
+      previewImage.value = ''
+      setTimeout(() => {
+        startCamera()
+      }, 500)
+    }
   }
   catch (error) {
     console.error('Error uploading image:', error)
