@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
     const body = await readBody(event)
 
     const requestBody = {
-      model: 'qwen-vl-max-2025-04-08',
+      model: 'qwen-vl-plus-2025-01-25',
       messages: [
         {
           role: 'system',
