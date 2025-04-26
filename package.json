@@ -3,35 +3,39 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev --host",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
+    "build": "nuxi build",
+    "dev": "nuxi dev --host",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview",
     "lint": "eslint .",
     "typecheck": "vue-tsc --noEmit",
-    "postinstall": "nuxt prepare"
+    "up": "taze major -r",
+    "up:w": "taze major -r -w",
+    "postinstall": "nuxi prepare"
   },
   "dependencies": {
     "@fal-ai/client": "^1.4.0",
     "@gradio/client": "^1.14.2",
-    "@nuxtjs/tailwindcss": "^6.11.4",
-    "@pinia/nuxt": "^0.5.1",
-    "nuxt": "^3.13.0",
-    "pinia": "^2.1.7",
-    "vue3-touch-events": "^4.1.8"
+    "@nuxtjs/tailwindcss": "^6.13.2",
+    "@pinia/nuxt": "^0.11.0",
+    "nuxt": "^3.16.2",
+    "pinia": "^3.0.2",
+    "vue3-touch-events": "^5.0.13"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.12.0",
-    "@nuxt/eslint": "^0.7.4",
-    "autoprefixer": "^10.4.18",
-    "eslint": "^9.17.0",
-    "eslint-plugin-format": "^0.1.3",
-    "lint-staged": "^15.2.11",
-    "postcss": "^8.4.35",
-    "simple-git-hooks": "^2.11.1",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.7.2",
-    "vue-tsc": "^2.1.10"
+    "@antfu/eslint-config": "^4.12.0",
+    "@nuxt/eslint": "^1.3.0",
+    "@tailwindcss/postcss": "^4.1.4",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.25.1",
+    "eslint-plugin-format": "^1.0.1",
+    "lint-staged": "^15.5.1",
+    "postcss": "^8.5.3",
+    "simple-git-hooks": "^2.13.0",
+    "tailwindcss": "^4.1.4",
+    "taze": "^19.0.4",
+    "typescript": "^5.8.3",
+    "vue-tsc": "^2.2.10"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

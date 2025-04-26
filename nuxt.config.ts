@@ -1,5 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  modules: [
+    '@pinia/nuxt',
+    '@nuxt/eslint',
+  ],
+  devtools: { enabled: false },
+  css: ['~/assets/css/main.css'],
   runtimeConfig: {
     ttsApiKey: '', // used for server https://edgetts.deno.dev
     recognizeBaseUrl: '', // used for server, tencent cloud
@@ -10,24 +16,24 @@ export default defineNuxtConfig({
     silliconApiKey: '', // used for silliconflow.cn
     bailianApiKey: '', // used for aliyun bailian
   },
-  compatibilityDate: '2024-04-03',
-  devtools: { enabled: false },
-  modules: ['@pinia/nuxt', '@nuxt/eslint'],
-  css: ['~/assets/css/main.css'],
+  compatibilityDate: '2025-04-26',
   vite: {
     server: {
       allowedHosts: true,
     },
   },
+  postcss: {
+    plugins: {
+      '@tailwindcss/postcss': {},
+      'autoprefixer': {},
+    },
+  },
   eslint: {
     config: {
       standalone: false,
-    },
-  },
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
+      nuxt: {
+        sortConfigKeys: true,
+      },
     },
   },
 })
